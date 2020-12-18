@@ -19,8 +19,6 @@ const ref = {
 
   searchImage(event) {
     event.preventDefault();
-    // Функціонал для кнопки Load More
-    // ref.loadMoreBtn.classList.add('is-hidden');
     ref.page = 1;
     ref.gallery.innerHTML = '';
     ref.renderImages(event.target.query.value);
@@ -34,8 +32,6 @@ const ref = {
         .then(data => {
         ref.loading.classList.remove('show');
           if (data.hits.length > 0) {
-          // Функціонал для кнопки Load More
-          // ref.loadMoreBtn.classList.remove('is-hidden')
             data.hits.forEach(el => ref.gallery.insertAdjacentHTML('beforeend', `${imageTemplate(el)}`));
           if (ref.gallery.children.length > 12) {
             const { scrollTop, clientHeight } = document.documentElement;
@@ -45,25 +41,18 @@ const ref = {
             })
           }
           }
-            // Функціонал для scroll
-          // else if (data.totalHits === ref.gallery.children.length && ref.gallery.children.length > 0) {
-          //   error({ delay: 3500, text: 'No more images in this category' })
-          // }
+          else if (data.totalHits === ref.gallery.children.length && ref.gallery.children.length > 0) {
+            error({ delay: 3500, text: 'No more images in this category' })
+          }
           else error({ delay: 3500, text: 'Such images are not found' })
-        // Функціонал для кнопки Load More
-        //  window.scrollTo({
-        //   top: document.documentElement.offsetHeight,
-        //   behavior: 'smooth'
-        // })
       })
     }, 100);
   },
 
-  // Функціонал для scroll
-  // showMore() {
-  //   ref.page += 1;
-  //   ref.renderImages(ref.form.query.value);
-  // },
+  showMore() {
+    ref.page += 1;
+    ref.renderImages(ref.form.query.value);
+  },
 }
 
 const infScroll = new InfiniteScroll('.gallery', {

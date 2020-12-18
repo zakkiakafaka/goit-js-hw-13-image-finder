@@ -7,8 +7,6 @@ import './styles.css';
 
 
 ref.form.addEventListener('submit', ref.searchImage);
-// Функціонал для кнопки Load More
-// ref.loadMoreBtn.addEventListener('click', ref.showMore);
 
 ref.gallery.addEventListener('click', (event) => {
   basicLightbox.create(`
@@ -16,18 +14,17 @@ ref.gallery.addEventListener('click', (event) => {
 	`).show()
 })
 
-// Функціонал для scroll
-// const loadMore = function () {
-//     ref.loading.classList.add('show');
-//     ref.showMore();
-// 	}
+const loadMore = function () {
+    ref.loading.classList.add('show');
+    ref.showMore();
+	}
 
-// window.addEventListener('scroll', () => {
-// 	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-//   if (clientHeight + scrollTop >= scrollHeight) {
-//     loadMore();
-//   }
-// });
+window.addEventListener('scroll', () => {
+	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (clientHeight + scrollTop >= scrollHeight) {
+    loadMore();
+  }
+});
 
 
 
